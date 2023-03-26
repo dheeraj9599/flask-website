@@ -1,12 +1,15 @@
 #  connecting mysql db to replit using sqlachemy
 from sqlalchemy import create_engine, text
 
+import os
+
 # FOLLOW FROM THIS DOCUMENT
 # https://docs.sqlalchemy.org/en/20/dialects/mysql.html
 
 # we have to create a engine to import mysql database
 
-db_connection_string = "mysql+pymysql://jg89pgw9blm36tpfsrxm:pscale_pw_GvJMblix4aBNyBp7Sd68l1vVpclC6mr0n98Tj49z3xN@ap-south.connect.psdb.cloud/dkcareers?charset=utf8mb4"
+# we hide our db username, pass string in Db_Connections as we do not want to show this on github
+db_connection_string = os.environ['DB_Connections']
 
 engine = create_engine(
   db_connection_string,
