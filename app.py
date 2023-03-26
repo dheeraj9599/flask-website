@@ -1,29 +1,7 @@
 # Flask is the class
 from flask import Flask, render_template, jsonify
-
+from db import JOBS
 app = Flask(__name__) # __name__ shows how a particular app is invocked
-
-
-JOBS=[
-  {
-    'id': 1,
-    'title': 'Web developer',
-    'location': 'bengaluru',
-    'salary': 'Rs 1lakh'
-  },
-  {
-    'id': 2,
-    'title': 'Software engineer',
-    'location': 'bengaluru',
-    'salary': 'Rs 1.5lakh'
-  },
-  {
-    'id': 3,
-    'title': 'Data analyst',
-    'location': 'noida',
-    'salary': 'Rs 1.3lakh'
-  }
-]
 
 #path after domain name ex- jovian.com/profile , domain - jovian.com/ and url after it use in route
 
