@@ -1,0 +1,4 @@
+flask
+guincorn
+sqlachemy
+pymysql
