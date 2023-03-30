@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% include 'bootstrap.html' %}
+  <title>Document</title>
+</head>
+<body>
+  {% include 'nav.html' %}
+  <div class="container">
+    <h4 class="mt-4">{{job.title}}</h4>
+  <p class="lead">{{job.location}}</p>
+  <h4> Responsibilities </h4>
+  <ul>
+    {%for res in job.responsibities.split(",")%}
+    <li>{{res}}</li>
+    {% endfor %}
+  </ul>
+
+  <h4> Requirements </h4>
+  <ol>
+    {%for req in job.requirements.split(",")%}
+    <li>{{req}}</li>
+    {% endfor %}
+  </ol>
+    <div>
+      <h5 style="display:inline;">Salary :</h5> 
+      <p style="display:inline;">{{job.currency}} {{job.salary}}</p>
+    </div>
+    
+  </div>
+</body>
+</html>

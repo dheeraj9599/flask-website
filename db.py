@@ -14,7 +14,7 @@ db_connection_string = os.environ['DB_Connections']
 engine = create_engine(
   db_connection_string,
   connect_args={
-    "ssl":{
+    "ssl":{ # ssl is used for more secure connection
       "ssl_ca": "/etc/ssl/cert.pem"
     }
   }
@@ -44,12 +44,18 @@ def Load_Jobs_From_DB():
     JOBS = []
   
     # print(type(result))
-    
-    for i in result:
-       JOBS.append(i)
+    # to convert DB rows as dict use ._asdict() v imp
+    for row in result.all():
+       JOBS.append(row._asdict())
       
     return JOBS
 
-JOBS = Load_Jobs_From_DB()
 
-
+def Load_Job_From_DB(id):
+  with engine.connect() as conn:
+    result = conn.execute(text(f"SELECT * FROM jobs WHERE id = {id}"))
+    rows = result.all()
+    if len(rows) == 0:
+      return None
+    else:# since id is the primary key so this will return one row only
+      return rows[0]._asdict()

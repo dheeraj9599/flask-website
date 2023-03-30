@@ -1,4 +1,4 @@
-
+{% include 'bootstrap.html' %}
 <div > 
   <div style="border-bottom:1px solid grey" class="row">
   <div style="font-size:15px" class ="col-9">
@@ -11,7 +11,8 @@
         </div>
   </div>
   <div class ="col-3" style="text-align:end;">
-    <a type="button" class="btn btn-outline-primary" href="mailto:adadadada.as?subject={{job['title']}}&body=My%20name%20%3A%20%3Cyour%20name%3E%0D%0AMy%20Resume%20%3A%20%3CResume%20Link%3E">Apply</a>  
+    <a href="/job/{{job['id']}}" type="button" class="btn btn-outline-primary">Apply</a>  
+<!-- giving route url in href -->
   </div>
   </div>
 </div>
