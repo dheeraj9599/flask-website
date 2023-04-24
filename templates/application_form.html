@@ -1,0 +1,22 @@
+
+<h4>Application Form</h4>
+<!-- post will not show the submitted details on url -->
+<!-- post is more secured to access the details in app.py we have to use methods["post"]-->
+<form action="/job/{{job['id']}}/apply" method="post"> 
+  <div class="mb-2">
+    <label>Full name</label><br>
+  <input type="text" name="full_name" placeholder="John Prakash"><br>
+  </div>
+
+  <div class="mb-2">
+    <label>Email</label><br>
+  <input type="text" name="email"placeholder="example@example.com"><br>
+  </div>
+
+  <div class="mb-2">
+    <label>LinkedIn URL</label><br>
+  <input type="text" name="LinkedInurl" placeholder="www.google.com"><br>
+  </div>
+  
+  <input type="submit">
+</form> 
