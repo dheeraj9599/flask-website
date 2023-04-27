@@ -9,10 +9,10 @@ app = Flask(__name__)  # __name__ shows how a particular app is invocked
 
 
 @app.route("/")
-def hello_world():
+def main():
   #passing dynamic contect in html
-  JOBS = Load_Jobs_From_DB()
-  return { "hello":"bye"}
+  jobs = Load_Jobs_From_DB()
+  return render_template('home.html', jobs = jobs)
 
 
 # to convert DB rows as dict use this v imp
