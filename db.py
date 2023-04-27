@@ -59,3 +59,18 @@ def Load_Job_From_DB(id):
       return None
     else:# since id is the primary key so this will return one row only
       return rows[0]._asdict()
+
+def add_application_to_db(job_id, data):
+  with engine.connect() as conn:
+    query = text("INSERT INTO applications (job_id, Full_name, Email,  Education, Work_Experience, Resume_url) VALUES (:job_id, :Full_name, :Email, :Education, :Work_Experience, :Resume_url)")
+    values = {
+      'job_id' : job_id,
+      'Full_name' : data['Full_name'],
+      'Email' : data['Email'],
+      'Education' : data['Education'],
+      'Work_Experience' : data['Work_Experience'],
+      'Resume_url' : data['Resume_url']
+    }
+    
+    print(query)
+    conn.execute(query, values)
