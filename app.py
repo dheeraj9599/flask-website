@@ -1,6 +1,6 @@
 # Flask is the class
 from flask import Flask, render_template, jsonify, request
-from db import Load_Jobs_From_DB, Load_Job_From_DB, add_application_to_db
+from db import Load_Jobs_From_DB, Load_Job_From_DB, add_application_to_db, add_user_to_db
 
 
 app = Flask(__name__)  # __name__ shows how a particular app is invocked
@@ -9,7 +9,14 @@ app = Flask(__name__)  # __name__ shows how a particular app is invocked
 
 
 @app.route("/")
+def login():
+  return render_template('login.html')
+
+@app.route("/home", methods=['post'])
 def main():
+  temp = request.form
+
+  add_user_to_db(temp)
   #passing dynamic contect in html
   jobs = Load_Jobs_From_DB()
   return render_template('home.html', jobs = jobs)
@@ -20,7 +27,6 @@ def main():
 def list_jobs():
   JOBS = Load_Jobs_From_DB()
   return jsonify(JOBS)
-
 
 # Dynamic route
 @app.route("/job/<id>")
@@ -33,9 +39,9 @@ def list_specific_job(id):
 def apply_for_job(id):
   # data = request.args # only get data from url
   data = request.form  #get data from post method submission
-  # print(data)
   add_application_to_db(id, data)
-
+  
+  
   return render_template('application_submitted.html')
 
 
