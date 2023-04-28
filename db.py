@@ -1,7 +1,7 @@
 #  connecting mysql db to replit using sqlachemy
 from sqlalchemy import create_engine, text
 
-import os
+import os, random
 
 # FOLLOW FROM THIS DOCUMENT
 # https://docs.sqlalchemy.org/en/20/dialects/mysql.html
@@ -73,3 +73,22 @@ def add_application_to_db(job_id, data):
     }
     
     conn.execute(query, values)
+
+def add_user_to_db(temp):
+  with engine.connect() as conn:
+    query = text("INSERT INTO users (user_id, job_id, password) VALUES (:user_id,:job_id, :password)")
+    
+    values = {
+      'user_id' : temp['user_id'],
+      'job_id' : random.randint(0,9),
+      'password' : temp['password']
+    }
+    
+    conn.execute(query, values)
+
+
+def update_user_job_id(temp):
+  with engine.connect() as conn:
+    query = text("UPDATE users SET (job_id = temp['job_id']) WHERE (user_id = temp['user_id']);")
+    
+    conn.execute(query)
